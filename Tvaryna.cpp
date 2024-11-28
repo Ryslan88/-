@@ -27,8 +27,15 @@ void Tvaryna::setFoodAmount(int f) {
 
 void Tvaryna::input() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "Введіть назву тварини: ";
-    std::getline(std::cin, name);
+    
+    while (true) {
+        std::cout << "Введіть назву тварини: ";
+        std::getline(std::cin, name);
+        if (!name.empty()) {
+            break;
+        }
+        std::cout << "Назва тварини не може бути порожньою. Спробуйте ще раз.\n";
+    }
 
     while (true) {
         std::cout << "Введіть кількість їжі (кг): ";
