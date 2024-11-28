@@ -9,27 +9,15 @@ Travoidni::~Travoidni() {}
 
 void Travoidni::input() {
     Tvarina::input();
-
-    while (true) {
-        std::cout << "Введіть вагу травоїдної (кг): ";
-        std::cin >> weight;
-        if (std::cin.fail() || weight <= 0) {
-            std::cout << "Вага має бути числом більше 0. Спробуйте ще раз.\n";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        } else {
-            break;
-        }
+    std::cout << "Введіть вагу травоїдної (кг): ";
+    while (!(std::cin >> weight) || weight <= 0) {
+        std::cout << "Вага має бути числом більше 0. Спробуйте ще раз: ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 }
 
 void Travoidni::display() const {
-    std::cout << "Травоїдна: " << name << "\n"
-              << "Вік: " << age << "\n"
-              << "Тривалість життя: " << duration << " років\n";
-}
-
-// Дружня функція для скидання ваги травоїдної
-void resetWeight(Travoidni& travoidni) {
-    travoidni.weight = 0.0;
+    Tvarina::display();
+    std::cout << "Вага: " << weight << " кг\n";
 }
