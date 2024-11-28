@@ -28,3 +28,8 @@ void Travoidni::display() const {
               << "Вік: " << age << "\n"
               << "Тривалість життя: " << duration << " років\n";
 }
+
+// Дружня функція для скидання ваги травоїдної
+void resetWeight(Travoidni& travoidni) {
+    travoidni.weight = 0.0;
+}
