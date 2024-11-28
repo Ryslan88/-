@@ -2,8 +2,7 @@
 #define KHIZHAK_H
 
 #include "Tvarina.h"
-
-class Display;
+#include "Display.h"
 
 class Khizhak : public Tvarina {
 private:
@@ -13,12 +12,10 @@ public:
     Khizhak(std::string n = "", double c = 0.0, int d = 0, int s = 0);
     ~Khizhak();
 
-    friend class Display;
-    friend void resetStrength(Khizhak& khizhak);
+    friend class Display; // Дружній клас
 
     void display() const override;
-    void input() override; // Метод для введення даних
-    int getStrength() const { return strength; }
+    void input() override; // Введення даних
 };
 
 #endif
