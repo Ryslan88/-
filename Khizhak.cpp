@@ -28,3 +28,8 @@ void Khizhak::display() const {
               << "Вік: " << age << "\n"
               << "Тривалість життя: " << duration << " років\n";
 }
+
+// Дружня функція для скидання сили хижака
+void resetStrength(Khizhak& khizhak) {
+    khizhak.strength = 0;
+}
