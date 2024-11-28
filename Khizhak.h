@@ -3,6 +3,8 @@
 
 #include "Tvarina.h"
 
+class Display;
+
 class Khizhak : public Tvarina {
 private:
     int strength; // Сила хижака
@@ -12,6 +14,7 @@ public:
     ~Khizhak();
 
     friend class Display;
+    friend void resetStrength(Khizhak& khizhak);
 
     void display() const override;
     void input() override; // Метод для введення даних
