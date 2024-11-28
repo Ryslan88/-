@@ -19,6 +19,16 @@ public:
     void showHerbivoreInfo(const Travoidni& travoidni) const {
         std::cout << "Вага травоїдної: " << travoidni.getWeight() << " кг" << std::endl;
     }
+
+    void resetPredatorStrength(Khizhak& khizhak) const {
+        resetStrength(khizhak);
+        std::cout << "Сила хижака скинута.\n";
+    }
+
+    void resetHerbivoreWeight(Travoidni& travoidni) const {
+        resetWeight(travoidni);
+        std::cout << "Вага травоїдної скинута.\n";
+    }
 };
 
 #endif
