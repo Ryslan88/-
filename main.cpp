@@ -4,7 +4,7 @@
 #include "Tvarina.h"
 #include "Khizhak.h"
 #include "Travoidni.h"
-#include "display.h"
+#include "Display.h"
 
 int main() {
     std::vector<Tvarina*> tvarini;
@@ -59,8 +59,10 @@ int main() {
         display.show(*t);
         if (auto* khizhak = dynamic_cast<Khizhak*>(t)) {
             display.showPredatorInfo(*khizhak);
+            display.resetPredatorStrength(*khizhak); // Скидаємо силу хижака
         } else if (auto* travoidni = dynamic_cast<Travoidni*>(t)) {
             display.showHerbivoreInfo(*travoidni);
+            display.resetHerbivoreWeight(*travoidni); // Скидаємо вагу травоїдної
         }
         std::cout << "---------------------\n";
     }
