@@ -2,8 +2,7 @@
 #define TRAVOIDNI_H
 
 #include "Tvarina.h"
-
-class Display;
+#include "Display.h"
 
 class Travoidni : public Tvarina {
 private:
@@ -13,12 +12,10 @@ public:
     Travoidni(std::string n = "", double c = 0.0, int d = 0, double w = 0.0);
     ~Travoidni();
 
-    friend class Display;
-    friend void resetWeight(Travoidni& travoidni);
+    friend class Display; // Дружній клас
 
     void display() const override;
-    void input() override; // Метод для введення даних
-    double getWeight() const { return weight; }
+    void input() override; // Введення даних
 };
 
 #endif
