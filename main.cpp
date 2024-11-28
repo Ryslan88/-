@@ -135,8 +135,20 @@ int main() {
         std::cout << "3. Зберегти дані у файл\n";
         std::cout << "4. Завантажити дані з файлу\n";
         std::cout << "5. Вийти\n";
-        std::cin >> option;
-        std::cin.ignore(); // Очищення буфера вводу
+
+        std::string input;
+        std::getline(std::cin, input);
+
+        // Перевірка на числове значення
+        try {
+            option = std::stoi(input);  // Преобразуємо в ціле число
+        } catch (const std::invalid_argument& e) {
+            std::cout << "Невірний вибір. Будь ласка, введіть число.\n";
+            continue;  // Пропускаємо поточну ітерацію і повертаємося до меню
+        } catch (const std::out_of_range& e) {
+            std::cout << "Невірний вибір. Введене число поза діапазоном.\n";
+            continue;  // Пропускаємо поточну ітерацію і повертаємося до меню
+        }
 
         switch (option) {
             case 1:
