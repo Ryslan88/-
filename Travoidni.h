@@ -3,6 +3,8 @@
 
 #include "Tvarina.h"
 
+class Display;
+
 class Travoidni : public Tvarina {
 private:
     double weight; // Вага травоїдної
@@ -12,6 +14,7 @@ public:
     ~Travoidni();
 
     friend class Display;
+    friend void resetWeight(Travoidni& travoidni);
 
     void display() const override;
     void input() override; // Метод для введення даних
