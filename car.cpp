@@ -18,18 +18,26 @@ void Car::inputCarData() {
         car_s_t car;
         std::cout << "Введіть дані для автомобіля " << (i + 1) << ":\n";
 
-        std::cout << "Марка: ";
-        std::getline(std::cin, car.make);
+        while (true) {
+            std::cout << "Марка: ";
+            std::getline(std::cin, car.make);
+            if (!car.make.empty()) break;
+            std::cout << "Марка не може бути порожньою. Спробуйте ще раз.\n";
+        }
 
-        std::cout << "Модель: ";
-        std::getline(std::cin, car.model);
+        while (true) {
+            std::cout << "Модель: ";
+            std::getline(std::cin, car.model);
+            if (!car.model.empty()) break;
+            std::cout << "Модель не може бути порожньою. Спробуйте ще раз.\n";
+        }
 
         std::cout << "Рік випуску: ";
         while (true) {
             std::cin >> car.year;
             if (car.year < 1886) {
                 std::cout << "Рік випуску не може бути менше 1886. Введіть рік знову: ";
-                } else if (car.year > 2024) {
+            } else if (car.year > 2024) {
                 std::cout << "Рік випуску не може бути більше 2024. Введіть рік знову: ";
             } else {
                 break;
@@ -74,18 +82,22 @@ void Car::updateCarByNumber() {
 
     std::cout << "Оновлення даних для автомобіля " << carNumber << ":\n";
 
-    std::cout << "Нова марка (залиште порожнім для пропуску): ";
-    std::string newMake;
-    std::getline(std::cin, newMake);
-    if (!newMake.empty()) {
+    while (true) {
+        std::cout << "Нова марка (залиште порожнім для пропуску): ";
+        std::string newMake;
+        std::getline(std::cin, newMake);
+        if (newMake.empty()) break;
         car.make = newMake;
+        break;
     }
 
-    std::cout << "Нова модель (залиште порожнім для пропуску): ";
-    std::string newModel;
-    std::getline(std::cin, newModel);
-    if (!newModel.empty()) {
+    while (true) {
+        std::cout << "Нова модель (залиште порожнім для пропуску): ";
+        std::string newModel;
+        std::getline(std::cin, newModel);
+        if (newModel.empty()) break;
         car.model = newModel;
+        break;
     }
 
     std::cout << "Новий рік випуску (залиште порожнім для пропуску): ";
@@ -93,10 +105,10 @@ void Car::updateCarByNumber() {
     std::getline(std::cin, newYearInput);
     if (!newYearInput.empty()) {
         int newYear = std::stoi(newYearInput);
-        if (newYear < 1886) {
-            std::cout << "Рік випуску не може бути менше 1886. Оновлення не виконано.\n";
-        } else {
+        if (newYear >= 1886 && newYear <= 2024) {
             car.year = newYear;
+        } else {
+            std::cout << "Рік випуску не може бути менше 1886 або більше 2024. Оновлення не виконано.\n";
         }
     }
 
@@ -154,18 +166,34 @@ void Car::insertCarAtPosition() {
 
     car_s_t car;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "Введіть дані для нового автомобіля:\n";
 
-    std::cout << "Марка: ";
-    std::getline(std::cin, car.make);
+    while (true) {
+        std::cout << "Марка: ";
+        std::getline(std::cin, car.make);
+        if (!car.make.empty()) break;
+        std::cout << "Марка не може бути порожньою. Спробуйте ще раз.\n";
+    }
 
-    std::cout << "Модель: ";
-    std::getline(std::cin, car.model);
+    while (true) {
+        std::cout << "Модель: ";
+        std::getline(std::cin, car.model);
+        if (!car.model.empty()) break;
+        std::cout << "Модель не може бути порожньою. Спробуйте ще раз.\n";
+    }
 
     std::cout << "Рік випуску: ";
-    std::cin >> car.year;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    while (true) {
+        std::cin >> car.year;
+        if (car.year < 1886) {
+            std::cout << "Рік випуску не може бути менше 1886. Введіть рік знову: ";
+        } else if (car.year > 2024) {
+            std::cout << "Рік випуску не може бути більше 2024. Введіть рік знову: ";
+        } else {
+            break;
+        }
+    }
 
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     cars.insert(cars.begin() + position, car);
     std::cout << "Новий автомобіль успішно доданий після автомобіля " << position + 1 << ".\n";
 }
