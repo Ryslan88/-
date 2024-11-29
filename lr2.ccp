@@ -10,7 +10,7 @@ double Second(double a, double x) {
 }
 
 double Third(double x) {
-    return pow(log(sqrt(pow(x, 2) + 1)), 3);
+    return log(pow(sqrt(pow(x, 2) + 1), 3))
 }
 
 void calculateResult(double a, double b, double x) {
