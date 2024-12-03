@@ -2,8 +2,8 @@
 #include <iostream>
 #include <limits>
 
-Khizhak::Khizhak(std::string n, double a, int d, int s)
-    : Tvarina(n, a, d), strength(s) {}
+Khizhak::Khizhak(std::string n, double c, int d, int s)
+    : Tvarina(n, c, d), strength(s) {}
 
 Khizhak::~Khizhak() {}
 
