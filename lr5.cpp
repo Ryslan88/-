@@ -20,10 +20,22 @@ public:
     }
 
     void input() {
-        cout << "Введіть марку: ";
-        getline(cin, brand);
-        cout << "Введіть модель: ";
-        getline(cin, model);
+        do {
+            cout << "Введіть марку: ";
+            getline(cin, brand);
+            if (brand.empty()) {
+                cout << "Помилка: Марка не може бути порожньою. Спробуйте ще раз." << endl;
+            }
+        } while (brand.empty());
+
+        do {
+            cout << "Введіть модель: ";
+            getline(cin, model);
+            if (model.empty()) {
+                cout << "Помилка: Модель не може бути порожньою. Спробуйте ще раз." << endl;
+            }
+        } while (model.empty());
+
         cout << "Введіть рік випуску: ";
         cin >> year;
         cin.ignore();
@@ -97,7 +109,8 @@ int main() {
     } else if (choice == 2) {
         string modelCriteria;
         cout << "Введіть назву моделі для фільтру: ";
-        cin >> modelCriteria;
+        cin.ignore(); // Щоб уникнути проблем із залишковими символами в потоці
+        getline(cin, modelCriteria);
         displayByModel(automobiles, modelCriteria);
     } else {
         cout << "Невірний вибір!" << endl;
@@ -105,4 +118,3 @@ int main() {
 
     return 0;
 }
-
