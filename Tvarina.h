@@ -2,23 +2,34 @@
 #define TVARINA_H
 
 #include <string>
-
-class Display;
+#include <iostream>
 
 class Tvarina {
 protected:
-    std::string name; // Назва тварини
-    double age;       // Вік
-    int duration;     // Тривалість життя
+    std::string name;
+    double cost;
+    int days;
 
 public:
-    Tvarina(std::string n = "", double a = 0.0, int d = 0);
-    virtual ~Tvarina();
+    Tvarina(std::string n = "", double c = 0.0, int d = 0)
+        : name(n), cost(c), days(d) {}
 
-    friend class Display; // Дружній клас
+    virtual ~Tvarina() {}
 
-    virtual void display() const = 0; // Чисто віртуальний метод
-    virtual void input();             // Метод для введення даних
+    virtual void display() const {
+        std::cout << "Ім'я: " << name << '\n';
+        std::cout << "Вартість: " << cost << '\n';
+        std::cout << "Дні: " << days << '\n';
+    }
+
+    virtual void input() {
+        std::cout << "Введіть ім'я: ";
+        std::cin >> name;
+        std::cout << "Введіть вартість: ";
+        std::cin >> cost;
+        std::cout << "Введіть кількість днів: ";
+        std::cin >> days;
+    }
 };
 
 #endif
