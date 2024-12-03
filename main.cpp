@@ -4,8 +4,6 @@
 #include <limits>
 #include "Carnivore.h"
 #include "Herbivore.h"
-#include "Carnivore.cpp"
-#include "Herbivore.cpp"
 
 // Функція для перевірки правильності введеного числа
 bool isValidChoice(int choice) {
