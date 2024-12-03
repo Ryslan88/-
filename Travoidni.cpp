@@ -1,23 +1,21 @@
-#include "Travoidni.h"
-#include <iostream>
-#include <limits>
+#ifndef KHIZHAK_H
+#define KHIZHAK_H
 
-Travoidni::Travoidni(std::string n, double a, int d, double w)
-    : Tvarina(n, a, d), weight(w) {}
+#include "Tvarina.h"
+#include "display.h"
 
-Travoidni::~Travoidni() {}
+class Khizhak : public Tvarina {
+private:
+    int strength; // Сила хижака
 
-void Travoidni::input() {
-    Tvarina::input();
-    std::cout << "Введіть вагу травоїдної (кг): ";
-    while (!(std::cin >> weight) || weight <= 0) {
-        std::cout << "Вага має бути числом більше 0. Спробуйте ще раз: ";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
-}
+public:
+    Khizhak(std::string n = "", double c = 0.0, int d = 0, int s = 0);
+    ~Khizhak();
 
-void Travoidni::display() const {
-    Tvarina::display();
-    std::cout << "Вага: " << weight << " кг\n";
-}
+    friend class Display; // Дружній клас
+
+    void display() const override;
+    void input() override; // Введення даних
+};
+
+#endif  
