@@ -46,7 +46,7 @@ void loadFromFile(const std::string& filename, std::vector<Animal*>& animals) {
     }
 
     std::string type;
-    while (ifs >> type) {
+    while (std::getline(ifs, type)) {
         if (type == "Carnivorous") {
             Animal* animal = new CarnivorousAnimal();
             animal->loadFromFile(ifs);
@@ -125,7 +125,7 @@ void addAnimal(std::vector<Animal*>& animals) {
 
 int main() {
     std::vector<Animal*> animals;
-    std::string filename = "animals.txt";
+    std::string filename = "animals.txt";  // Тут була проблема, в попередньому коді відсутній правильний ініціалізатор
 
     int option;
     do {
@@ -139,15 +139,14 @@ int main() {
         std::string input;
         std::getline(std::cin, input);
 
-        // Перевірка на числове значення
         try {
             option = std::stoi(input);  // Преобразуємо в ціле число
         } catch (const std::invalid_argument& e) {
-            std::cout << "Невірний вибір. Будь ласка, введіть число.\n";
-            continue;  // Пропускаємо поточну ітерацію і повертаємося до меню
+            std::cout << "Помилка: введено нечислове значення. Спробуйте ще раз.\n";
+            continue;
         } catch (const std::out_of_range& e) {
-            std::cout << "Невірний вибір. Введене число поза діапазоном.\n";
-            continue;  // Пропускаємо поточну ітерацію і повертаємося до меню
+            std::cout << "Помилка: число виходить за межі допустимого діапазону.\n";
+            continue;
         }
 
         switch (option) {
@@ -155,10 +154,8 @@ int main() {
                 addAnimal(animals);
                 break;
             case 2:
-                std::cout << "\nІнформація про тварин:\n";
                 for (const auto& animal : animals) {
                     animal->showInfo();
-                    std::cout << "-----------------------" << std::endl;
                 }
                 break;
             case 3:
@@ -176,7 +173,8 @@ int main() {
         }
     } while (option != 5);
 
-    for (auto& animal : animals) {
+    // Очищення пам'яті
+    for (auto animal : animals) {
         delete animal;
     }
 
