@@ -1,34 +1,21 @@
+#ifndef KHIZHAK_H
+#define KHIZHAK_H
+
 #include "Tvarina.h"
-#include <iostream>
-#include <limits>
+#include "display.h"
 
-Tvarina::Tvarina(std::string n, double a, int d) : name(n), age(a), duration(d) {}
+class Khizhak : public Tvarina {
+private:
+    int strength; // Сила хижака
 
-Tvarina::~Tvarina() {}
+public:
+    Khizhak(std::string n = "", double c = 0.0, int d = 0, int s = 0);
+    ~Khizhak();
 
-void Tvarina::input() {
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "Введіть назву тварини: ";
-    while (std::getline(std::cin, name) && name.empty()) {
-        std::cout << "Назва не може бути порожньою. Спробуйте ще раз: ";
-    }
+    friend class Display; // Дружній клас
 
-    std::cout << "Введіть вік тварини: ";
-    while (!(std::cin >> age) || age < 0) {
-        std::cout << "Вік має бути числом більше або рівне 0. Спробуйте ще раз: ";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
+    void display() const override;
+    void input() override; // Введення даних
+};
 
-    std::cout << "Введіть тривалість життя (роки): ";
-    while (!(std::cin >> duration) || duration < 0) {
-        std::cout << "Тривалість має бути числом більше або рівне 0. Спробуйте ще раз: ";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
-}
-
-void Tvarina::display() const {
-    std::cout << "Назва: " << name << "\nВік: " << age 
-              << "\nТривалість життя: " << duration << " років\n";
-}
+#endif
