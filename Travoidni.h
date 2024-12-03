@@ -1,16 +1,16 @@
-#ifndef TRAVOIDNI_H
-#define TRAVOIDNI_H
+#ifndef KHIZHAK_H
+#define KHIZHAK_H
 
 #include "Tvarina.h"
-#include "Display.h"
+#include "display.h"
 
-class Travoidni : public Tvarina {
+class Khizhak : public Tvarina {
 private:
-    double weight; // Вага травоїдної
+    int strength; // Сила хижака
 
 public:
-    Travoidni(std::string n = "", double c = 0.0, int d = 0, double w = 0.0);
-    ~Travoidni();
+    Khizhak(std::string n = "", double c = 0.0, int d = 0, int s = 0);
+    ~Khizhak();
 
     friend class Display; // Дружній клас
 
